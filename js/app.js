@@ -37,12 +37,12 @@
             controller: 'loginController'
           })
           .state('main.dashboard', {
-            url: '/dashboard',
+            url: 'dashboard',
             templateUrl: 'js/modules/dashboard/dashboard.html'
           })
-          .state('main.spotimport', {
-            url: '/sportimport',
-            templateUrl: 'js/modules/sportimport/sportimport.html',
+          .state('main.spotImport', {
+            url: 'spotImport',
+            templateUrl: 'js/modules/spotImport/spotImport.html',
             controller: 'sportImportController'
           })
       }])

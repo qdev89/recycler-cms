@@ -28,7 +28,7 @@
               deferred = $q.defer();
 
             spots.get(null, function (data) {
-              console.log('Spot data: ', data);
+              console.log('Telerik data: ', data);
               deferred.resolve(data);
             }, function (error) {
               deferred.reject(error);
@@ -51,7 +51,7 @@
 
             $http.get('js/modules/spotImport/maptiveSpots.json')
               .success(function (data) {
-                console.log('Maptive data: ', data)
+                console.log('Maptive data: ', data);
                 deferred.resolve(data);
               })
               .error(function () {

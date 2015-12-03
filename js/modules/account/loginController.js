@@ -17,8 +17,7 @@
           //  });
 
           // temp
-          //if($scope.loginData.username == 'bjarke@bsrweb.dk' && $scope.loginData.password == 'Rec0089') {
-          if($scope.loginData.username == 'a@a' && $scope.loginData.password == '1') {
+          if($scope.loginData.username == 'bjarke@bsrweb.dk' && $scope.loginData.password == 'Rec0089') {
             $rootScope.currentUser.isAuth = true;
             $state.go('main.dashboard');
           } else {

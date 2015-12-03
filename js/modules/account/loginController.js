@@ -3,8 +3,8 @@
 
   angular
     .module('recycler')
-    .controller('loginController', ['accountFactory', '$scope', '$state',
-      function (accountFactory, $scope, $state) {
+    .controller('loginController', ['accountFactory', '$scope', '$state', '$rootScope',
+      function (accountFactory, $scope, $state, $rootScope) {
         $scope.loginData = {
           username: '',
           password: ''
@@ -17,8 +17,10 @@
           //  });
 
           // temp
-          if($scope.loginData.username == 'bjarke@bsrweb.dk' && $scope.loginData.password == 'Rec0089') {
-            $state.go('/');
+          //if($scope.loginData.username == 'bjarke@bsrweb.dk' && $scope.loginData.password == 'Rec0089') {
+          if($scope.loginData.username == 'a@a' && $scope.loginData.password == '1') {
+            $rootScope.currentUser.isAuth = true;
+            $state.go('main.dashboard');
           } else {
             console.log('login fail')
           }

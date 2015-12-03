@@ -3,11 +3,24 @@
 
   angular
     .module('recycler', ['ui.router'])
-    .run(['$rootScope',
-      function($rootScope) {
+    .constant('constants', {
+      telerikAppId: 'yPCpguY5pk7Zy5rc',
+      telerikLoginData: {
+        username: 'bjarke@bsrweb.dk',
+        password: 'Rec0089'
+      }
+    })
+    .run(['$rootScope', 'constants',
+      function($rootScope, constants) {
         $rootScope.currentUser = {
           isAuth: false
-        }
+        };
+
+        // Config Telerik SDK
+        $rootScope.el = new Everlive({
+          appId: constants.telerikAppId,
+          scheme: 'http'
+        });
     }])
     .config(['$stateProvider', '$urlRouterProvider',
       function ($stateProvider, $urlRouterProvider) {

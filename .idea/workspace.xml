@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="643597e1-3ef9-4f0d-9ee7-305d998e5e02" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/unknown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/libs/angular-spinner.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/libs/spin.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/a8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/angular_logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p_big1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p_big2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/p_big3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/profile_big.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/zender_logo.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/dashboard/dashboard.html" afterPath="$PROJECT_DIR$/js/modules/dashboard/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/layout/navbar.html" afterPath="$PROJECT_DIR$/js/modules/layout/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/layout/sidebar.html" afterPath="$PROJECT_DIR$/js/modules/layout/sidebar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/spotImport/spotImport.html" afterPath="$PROJECT_DIR$/js/modules/spotImport/spotImport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/spotImport/spotImportController.js" afterPath="$PROJECT_DIR$/js/modules/spotImport/spotImportController.js" />
     </list>
     <ignored path="RecyclerEMS_Admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="17" selection-start-line="32" selection-start-column="21" selection-end-line="43" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.9438944">
+              <caret line="43" column="15" selection-start-line="32" selection-start-column="19" selection-end-line="43" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -115,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="navbar.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="navbar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/layout/navbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11724138">
+            <state vertical-scroll-proportion="-2.6153846">
               <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
@@ -154,10 +124,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/modules/dashboard/dashboard.html" />
         <option value="$PROJECT_DIR$/js/modules/layout/sidebar.html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/js/modules/spotImport/spotImportController.js" />
         <option value="$PROJECT_DIR$/js/modules/spotImport/spotImport.html" />
         <option value="$PROJECT_DIR$/js/modules/layout/navbar.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
@@ -576,14 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="17" selection-start-line="32" selection-start-column="21" selection-end-line="43" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/layout/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41034484">
@@ -636,11 +598,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/layout/navbar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11724138">
+        <state vertical-scroll-proportion="-2.6153846">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#nav#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9438944">
+          <caret line="43" column="15" selection-start-line="32" selection-start-column="19" selection-end-line="43" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

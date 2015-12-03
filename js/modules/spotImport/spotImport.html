@@ -1,31 +1,62 @@
-<h2>Spot Import</h2>
-<div class="row">
-    <div class="col-md-6">
-        <h3>Data from Telerik Database</h3>
+<span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
 
-        <div class="form-group">
-            <label class="col-xs-3 control-label">Count:</label>
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h2>Spot Import</h2>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-sm-6 b-r">
+                <h3 class="m-t-none m-b">Data from Telerik Database</h3>
 
-            <div class="col-xs-9">
-                <span>{{::telerikSpots.count}}</span>
+                <div class="form-group">
+                    <span class="col-xs-3">Count:</span>
+
+                    <div class="col-xs-9">
+                        <span>{{::telerikSpots.count}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3 class="m-t-none m-b">Data from Maptive Url</h3>
+
+                <div class="form-group">
+                    <span class="col-xs-3">Count:</span>
+
+                    <div class="col-xs-9">
+                        <span>{{::maptiveSpots.total_markers}}</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <h3>Data from Maptive Url</h3>
+        <div class="row m-t">
+            <div class="col-sm-12">
+                <h3 class="m-t-none m-b">Result</h3>
 
-        <div class="form-group">
-            <label class="col-xs-3 control-label">Count:</label>
+                <div class="form-group">
+                    <span class="col-xs-3">Updated spots:</span>
 
-            <div class="col-xs-9">
-                <span>{{::maptiveSpots.total_markers}}</span>
+                    <div class="col-xs-9">
+                        <span>{{updatedSpots.length}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <span class="col-xs-3">New spots:</span>
+
+                    <div class="col-xs-9">
+                        <span>{{newSpots.length}}</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        Updated spots: {{updatedSpots.length}}
-        New spots: {{newSpots.length}}
+        <div class="row m-t">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button class="btn btn-info" ng-click="import()">Import</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

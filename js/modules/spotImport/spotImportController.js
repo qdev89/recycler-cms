@@ -3,13 +3,14 @@
 
   angular
     .module('recycler')
-    .controller('sportImportController', ['$scope', 'sportImportFactory',
-      function ($scope, sportImportFactory) {
+    .controller('sportImportController', ['$scope', 'sportImportFactory', 'usSpinnerService',
+      function ($scope, sportImportFactory, usSpinnerService) {
         $scope.newSpots = [];
         $scope.updatedSpots = [];
 
         sportImportFactory.getSpotsFromMaptive()
           .then(function (result) {
+            usSpinnerService.spin('spinner-1');
             $scope.maptiveSpots = result;
 
             sportImportFactory.getSpotsFromDb()
@@ -39,5 +40,15 @@
                 }))
               });
           });
+
+        $scope.$watch('newSpots.length', function(newData) {
+          if(newData) {
+            usSpinnerService.stop('spinner-1');
+          }
+        });
+
+        $scope.import = function() {
+          alert('TODO');
+        }
       }])
 })();

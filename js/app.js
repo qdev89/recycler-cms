@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('recycler', ['ui.router'])
+    .module('recycler', ['ui.router', 'angularSpinner'])
     .constant('constants', {
       telerikAppId: 'yPCpguY5pk7Zy5rc',
       telerikLoginData: {
@@ -30,18 +30,18 @@
             url: '/',
             templateUrl: 'js/modules/layout/main.html',
             resolve: {
-              authenticated: function($q, $location, $rootScope) {
-                var deferred = $q.defer();
-
-                if($rootScope.currentUser.isAuth) {
-                  deferred.resolve(true);
-                } else {
-                  $location.url('/login');
-                  deferred.resolve(false);
-                }
-
-                return deferred.promise;
-              }
+              //authenticated: function($q, $location, $rootScope) {
+              //  var deferred = $q.defer();
+              //
+              //  if($rootScope.currentUser.isAuth) {
+              //    deferred.resolve(true);
+              //  } else {
+              //    $location.url('/login');
+              //    deferred.resolve(false);
+              //  }
+              //
+              //  return deferred.promise;
+              //}
             }
           })
           .state('login', {

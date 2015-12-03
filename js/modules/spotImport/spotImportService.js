@@ -23,7 +23,7 @@
         telerikLogin();
 
         return {
-          getSpotFromDb: function () {
+          getSpotsFromDb: function () {
             var spots = el.data('Spot'),
               deferred = $q.defer();
 
@@ -33,6 +33,30 @@
             }, function (error) {
               deferred.reject(error);
             });
+
+            return deferred.promise;
+          },
+          getSpotsFromMaptive: function () {
+            // CORS error
+            //return $http({
+            //  method: 'GET',
+            //  url: 'http://www.maptive.com/ver3/data.php?operation=get_map_markers&map_id=84877&bounds=53.003421,6.994009,58.592772,13.959341',
+            //  withCredentials: true,
+            //  headers: {
+            //    'Content-Type': 'application/json; charset=utf-8'
+            //  }
+            //});
+
+            var deferred = $q.defer();
+
+            $http.get('js/modules/spotImport/maptiveSpots.json')
+              .success(function (data) {
+                console.log('Maptive data: ', data)
+                deferred.resolve(data);
+              })
+              .error(function () {
+                deferred.reject('get maptive spots fail');
+              });
 
             return deferred.promise;
           }

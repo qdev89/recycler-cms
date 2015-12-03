@@ -5,10 +5,15 @@
     .module('recycler')
     .controller('sportImportController', ['$scope', 'sportImportFactory',
       function ($scope, sportImportFactory) {
-        $scope.title = 'title';
-        sportImportFactory.getSpotFromDb()
+
+        sportImportFactory.getSpotsFromDb()
           .then(function (result) {
             $scope.telerikSpots = result;
           });
+
+        sportImportFactory.getSpotsFromMaptive()
+          .then(function(result) {
+            $scope.maptiveSpots = result;
+          })
       }])
 })();

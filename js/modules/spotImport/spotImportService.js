@@ -51,11 +51,29 @@
 
             $http.get('js/modules/spotImport/maptiveSpots.json')
               .success(function (data) {
-                console.log('Maptive data: ', data);
+                console.log('Maptive Spots: ', data);
                 deferred.resolve(data);
               })
               .error(function () {
                 deferred.reject('get maptive spots fail');
+              });
+
+            return deferred.promise;
+          },
+          getMarkers: function() {
+
+            // CORS error
+            //return $http.get('http://www.maptive.com/ver3/data.php?operation=get_map_markers&map_id=84877&bounds=53.003421,6.994009,58.592772,13.959341');
+
+            var deferred = $q.defer();
+
+            $http.get('js/modules/spotImport/maptiveMarkers.json')
+              .success(function (data) {
+                console.log('Maptive Markers: ', data);
+                deferred.resolve(data);
+              })
+              .error(function () {
+                deferred.reject('get maptive markers fail');
               });
 
             return deferred.promise;

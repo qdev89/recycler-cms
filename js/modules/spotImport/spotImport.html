@@ -54,24 +54,28 @@
         <div class="row m-t">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <button class="btn btn-info" ng-click="import()">Import</button>
+                    <button class="btn btn-info" ng-click="splitDataFromUrl()">Import</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<h2>Marker data:</h2>
-<p ng-repeat="marker in markerData">
-    <strong>{{::marker.day}}</strong>:&nbsp;{{::marker.time}}
-</p>
-<!--<div><span class='l'><b>Mandag</b>:</span>&#160;08.00-16.00</div>-->
-<!--<div><span class='l'><b>Tirsdag</b>:</span>&#160;08.00-16.00</div>-->
-<!--<div><span class='l'><b>Onsdag</b>:</span>&#160;08.00-16.00</div>-->
-<!--<div><span class='l'><b>Torsdag </b>:</span>&#160;08.00-16.00</div>-->
-<!--<div><span class='l'><b>Fredag</b>:</span>&#160;08.00-16.00</div>-->
-<!--<div><span class='l'><b>Lørdag</b>:</span>&#160;Lukket</div>-->
-<!--<div><span class='l'><b>Søndag</b>:</span>&#160;Lukket</div>-->
-<!--<div><span class='l'><b>Indsamlingspladsen donerer til</b>:</span>&#160;Eleverne donerer til projekter I udlandet. Lige-->
-    <!--nu sender de fodbolde til Cambodia-->
-<!--</div>-->
+<div class="row">
+    <div class="col-md-6">
+        <div ng-if="!_.isEmpty(markerData)">
+            <h2>Marker data</h2>
+            <p>Count: <span ng-bind="markerData.length"></span></p>
+            <div ng-repeat="marker in markerData">
+                <strong ng-if="marker.day">{{::marker.day}}:&nbsp;</strong>{{::marker.description}}
+            </div>
+        </div></div>
+    <div class="col-md-6">
+        <div ng-if="!_.isEmpty(spotData)">
+            <h2>Spot data</h2>
+            <p>Count: <span ng-bind="spotData.length"></span></p>
+            <div ng-repeat="spot in spotData">
+                <pre>{{spot | json}}</pre>
+            </div>
+        </div></div>
+</div>

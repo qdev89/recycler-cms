@@ -50,23 +50,35 @@
 
         function splitDataFromUrl() {
           sportImportFactory.getMarkers()
-            .then(function(result) {
-              _.forEach(result.markers, function(marker) {
+            .then(function (result) {
+              _.forEach(result.markers, function (marker, index) {
+                $scope.tempMarkerData = marker; // TODO
+
                 var description = marker.d;
                 var divs = description.split('</div>');
 
-                _.forEach(divs, function(div) {
-                  var day = div.match(new RegExp('\<b\>' + '(.*)' + '\<\/b\>'));
-                  var translatedDay = translateDay(day[1]);
+                _.forEach(divs, function (div) {
+                  if (div.length > 0) {
+                    $scope.import($scope.tempMarkerData);
 
-                  var time = div.split(';');
-                  var translatedTime = translateDate(time[1]);
+                    var day = div.match(new RegExp('\<b\>' + '(.*)' + '\<\/b\>'));
+                    var translatedDay = translateDay(day[1]);
 
-                  $scope.markerData.push({
-                    'day': translatedDay,
-                    'time': translatedTime
-                  });
-                  debugger;
+                    if (translatedDay == undefined) {
+                      $scope.markerData.push({
+                        'day': translatedDay,
+                        'description': 'TODO: Collection Square donates to: Students donate to projects abroad. At the moment, the footballs to Cambodia'
+                      });
+                    }
+
+                    var time = div.split(';');
+                    var translatedTime = translateDate(time[1], index, translatedDay);
+
+                    $scope.markerData.push({
+                      'day': translatedDay,
+                      'description': translatedTime
+                    });
+                  }
                 });
               })
 
@@ -75,114 +87,118 @@
 
         function translateDay(day) {
           day = day.trim();
-          switch(day) {
-            case 'Mandag': {
+          switch (day) {
+            case 'Mandag':
+            {
               return 'Monday'
             }
-            case 'Tirsdag': {
+            case 'Tirsdag':
+            {
               return 'Tuesday'
             }
-            case 'Onsdag': {
+            case 'Onsdag':
+            {
               return 'Wednesday'
             }
-            case 'Torsdag': {
+            case 'Torsdag':
+            {
               return 'Thursday'
             }
-            case 'Fredag': {
+            case 'Fredag':
+            {
               return 'Friday'
             }
-            case 'Lørdag': {
+            case 'Lørdag':
+            {
               return 'Saturday'
             }
-            case 'Søndag': {
+            case 'Søndag':
+            {
               return 'Sunday'
             }
           }
         }
 
-        function translateDate(date) {
+        function translateDate(date, index, translatedDay) {
           // input: 08.00-16.00
           // output: 8:00 to 4:00 p.m.
           var times = date.split('-');
 
-          if(!_.isEmpty(times)) {
-            var firstTimeHour = parseInt(times[0].substring(0, 2));
-            var firstTimeMinute = times[0].substr(3, 2);
-            var firstTimeIsPM = false;
-            if (firstTimeHour > 12) {
-              firstTimeIsPM = true;
+          if (!_.isEmpty(times) && Array.isArray(times) && times.length >= 2) {
+            var openingHour = parseInt(times[0].substring(0, 2));
+            $scope.spotData[index].OpeningHoursWeekdaysFrom = openingHour;
+            var openingMinute = times[0].substr(3, 2);
+            var openingIsPM = false;
+            if (openingHour > 12) {
+              openingIsPM = true;
             }
-            var firstTimeResult = firstTimeIsPM ?
-            (parseInt(firstTimeHour) - 12) + ':' + firstTimeMinute + 'p.m' :
-            parseInt(firstTimeHour) + ':' + firstTimeMinute;
+            var openingResult = openingIsPM ?
+            (parseInt(openingHour) - 12) + ':' + openingMinute + 'p.m' :
+            parseInt(openingHour) + ':' + openingMinute;
 
-            var secondTimeHour = parseInt(times[1].substring(0, 2));
-            var secondTimeMinute = times[1].substr(3, 2);
-            var secondTimeIsPM = false;
-            if (secondTimeHour > 12) {
-              secondTimeIsPM = true;
+            var closingHour = parseInt(times[1].substring(0, 2));
+            $scope.spotData[index].OpeningHoursWeekdaysTo = closingHour;
+            var closingMinute = times[1].substr(3, 2);
+            var closingIsPM = false;
+            if (closingHour > 12) {
+              closingIsPM = true;
             }
-            var secondTimeResult = secondTimeIsPM ?
-            (parseInt(secondTimeHour) - 12) + ':' + secondTimeMinute + ' p.m.' :
-            parseInt(secondTimeHour) + ':' + secondTimeMinute;
+            var closingResult = closingIsPM ?
+            (parseInt(closingHour) - 12) + ':' + closingMinute + ' p.m.' :
+            parseInt(closingHour) + ':' + closingMinute;
 
-            return firstTimeResult + ' to ' + secondTimeResult;
+            return openingResult + ' to ' + closingResult;
           } else if (date.toLowerCase() === 'lukket') {
+            if(translatedDay === 'Saturday') {
+              $scope.spotData[index].OpeningHoursSaturdayFrom = 0;
+              $scope.spotData[index].OpeningHoursSaturdayTo = 0;
+            }
+            if(translatedDay === 'Sunday') {
+              $scope.spotData[index].OpeningHoursSundayFrom = 0;
+              $scope.spotData[index].OpeningHoursSundayTo = 0;
+            }
             return 'Closed';
           }
         }
 
-        splitDataFromUrl();
+        $scope.splitDataFromUrl = splitDataFromUrl;
 
-        $scope.import = function () {
-          // http://www.maptive.com/ver3/data.php?operation=get_map_markers&map_id=84877&bounds=53.003421,6.994009,58.592772,13.959341
-          alert('TODO');
-          var spot = $scope.newSpots[0];
-          debugger;
-          var spotData = $rootScope.el.data('Spot');
-          var location = {
-            longitude: spot.ln,
-            latitude: spot.lt
-          };
-          spotData.create({
-              //'userId': spot.UserID,
-              "Name": spot.t,
-              "Description": spot.Description,
-              "Longitude": spot.ln,
-              "Latitude": spot.lt,
-              "Country": 'Denmark',
-              //"City": spot.City,
-              //"CVR": spot.CVR,
-              "Address": spot.a,
-              "EventDate": spot.EventDate,
-              "Phone": spot.Phone,
-              "SpotType": spot.SpotType,
-              //"State": spot.State,
-              //"Web": spot.Web,
-              "Zip": spot.postalcode,
-              "ClosingTimeSat": spot.ClosingTimeSat,
-              "ClosingTimeSun": spot.ClosingTimeSun,
-              "ClosingTimeWeekdays": spot.ClosingTimeWeekdays,
-              "OpeningHoursSaturdayFrom": spot.OpeningHoursSaturdayFrom,
-              "OpeningHoursSaturdayTo": spot.OpeningHoursSaturdayTo,
-              "OpeningHoursSundayFrom": spot.OpeningHoursSundayFrom,
-              "OpeningHoursSundayTo": spot.OpeningHoursSundayTo,
-              "OpeningHoursWeekdaysFrom": spot.OpeningHoursWeekdaysFrom,
-              "OpeningHoursWeekdaysTo": spot.OpeningHoursWeekdaysTo,
-              "OpeningTimeSat": spot.OpeningTimeSat,
-              "OpeningTimeSun": spot.OpeningTimeSun,
-              "OpeningTimeWeekdays": spot.OpeningTimeWeekdays,
-              //"Image": res.result.Uri,
-              "Location": location
+        $scope.spotData = [];
+        $scope.import = function (spot) {
+          $scope.spotData.push({
+            //'userId': spot.UserID,
+            "Name": spot.t,
+            "Description": spot.d,
+            "Longitude": spot.ln,
+            "Latitude": spot.lt,
+            "Country": 'Denmark',
+            //"City": spot.City,
+            //"CVR": spot.CVR,
+            "Address": spot.l,
+            //"EventDate": spot.EventDate,
+            //"Phone": spot.Phone,
+            //"SpotType": spot.SpotType,
+            //"State": spot.State,
+            //"Web": spot.Web,
+            "Zip": spot.postalcode,
 
-            },
-            function (data) {
-              debugger;
+            //"ClosingTimeSat": spot.ClosingTimeSat,
+            //"ClosingTimeSun": spot.ClosingTimeSun,
+            //"ClosingTimeWeekdays": spot.ClosingTimeWeekdays,
 
-            },
-            function (error) {
-              console.log(error);
-            });
+            //"OpeningHoursSaturdayFrom": spot.OpeningHoursSaturdayFrom,
+            //"OpeningHoursSaturdayTo": spot.OpeningHoursSaturdayTo,
+            //"OpeningHoursSundayFrom": spot.OpeningHoursSundayFrom,
+            //"OpeningHoursSundayTo": spot.OpeningHoursSundayTo,
+            //"OpeningHoursWeekdaysFrom": spot.OpeningHoursWeekdaysFrom,
+            //"OpeningHoursWeekdaysTo": spot.OpeningHoursWeekdaysTo,
+
+            //"OpeningTimeSat": spot.OpeningTimeSat,
+            //"OpeningTimeSun": spot.OpeningTimeSun,
+            //"OpeningTimeWeekdays": spot.OpeningTimeWeekdays,
+            //"Image": res.result.Uri,
+            //"Location": location
+          });
         }
       }])
 })();

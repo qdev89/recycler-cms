@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="643597e1-3ef9-4f0d-9ee7-305d998e5e02" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/spotImport/spotImport.html" afterPath="$PROJECT_DIR$/js/modules/spotImport/spotImport.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/spotImport/spotImportController.js" afterPath="$PROJECT_DIR$/js/modules/spotImport/spotImportController.js" />
     </list>
@@ -28,9 +27,12 @@
       <file leaf-file-name="spotImportController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/modules/spotImport/spotImportController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5815523">
-              <caret line="174" column="12" selection-start-line="166" selection-start-column="10" selection-end-line="174" selection-end-column="12" />
-              <folding />
+            <state vertical-scroll-proportion="0.50217867">
+              <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+              <folding>
+                <element signature="e#492#1806#0" expanded="false" />
+                <element signature="e#4307#4988#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,8 +40,8 @@
       <file leaf-file-name="spotImport.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/spotImport/spotImport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.2181816">
-              <caret line="56" column="85" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="85" />
+            <state vertical-scroll-proportion="-1.4727273">
+              <caret line="56" column="68" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
               </folding>
@@ -415,7 +417,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -424,7 +426,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#492#1806#0" expanded="false" />
+            <element signature="e#4307#4988#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -450,7 +455,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#492#1806#0" expanded="false" />
+            <element signature="e#4307#4988#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -476,7 +484,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#492#1806#0" expanded="false" />
+            <element signature="e#4307#4988#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -548,7 +559,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#492#1806#0" expanded="false" />
+            <element signature="e#4307#4988#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -703,8 +717,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/spotImport/spotImport.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.2181816">
-          <caret line="56" column="85" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="85" />
+        <state vertical-scroll-proportion="-1.4727273">
+          <caret line="56" column="68" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
           <folding>
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
@@ -713,9 +727,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/spotImport/spotImportController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5815523">
-          <caret line="174" column="12" selection-start-line="166" selection-start-column="10" selection-end-line="174" selection-end-column="12" />
-          <folding />
+        <state vertical-scroll-proportion="0.50217867">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+          <folding>
+            <element signature="e#492#1806#0" expanded="false" />
+            <element signature="e#4307#4988#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

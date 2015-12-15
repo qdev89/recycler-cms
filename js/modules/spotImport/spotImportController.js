@@ -8,6 +8,9 @@
         $scope.newSpots = [];
         $scope.updatedSpots = [];
         $scope.markerData = [];
+        $scope.spotData = [];
+        $scope.customIndex = 0;
+        $scope.count = 0;
 
         sportImportFactory.getSpotsFromMaptive()
           .then(function (result) {
@@ -49,18 +52,38 @@
         });
 
         $scope.splitDataFromUrl = function () {
+          $scope.isImporting = true;
+
           sportImportFactory.getMarkers()
             .then(function (result) {
               _.forEach(result.markers, function (marker, index) {
+
                 $scope.markerData.push(marker);
                 $scope.markerData[index].translatedData = [];
 
                 var description = marker.d;
                 var divs = description.split('</div>');
+                divs = _.omit(divs, _.isEmpty);
 
-                _.forEach(divs, function (div) {
+                if(index - $scope.count == _.size(divs) - 1) {
+                  $scope.customIndex += _.size(divs) - 1;
+                  $scope.count += index;
+                }
+
+                _.forEach(divs, function (div, index2) {
+                  index2 = parseInt(index2);
+
                   if (div.length > 0) {
-                    $scope.import($scope.markerData);
+
+                    $scope.spotData[$scope.customIndex + index2] = {
+                      weeksDayStart: 0,
+                      weeksDayEnd: 0,
+                      saturdayStart: 0,
+                      saturdayEnd: 0,
+                      sundayStart: 0,
+                      sundayEnd: 0,
+                      Description: ''
+                    };
 
                     var day = div.match(new RegExp('\<b\>' + '(.*)' + '\<\/b\>'));
                     var translatedDay = translateDay(day[1]);
@@ -70,20 +93,21 @@
                         'day': translatedDay,
                         'description': 'TODO: Collection Square donates to: Students donate to projects abroad. At the moment, the footballs to Cambodia'
                       });
+                      $scope.spotData[$scope.customIndex + index2].Description = $scope.markerData[index].translatedData.description;
+                    } else {
+                      var time = div.split(';');
+                      var translatedTime = translateDate(time[1], $scope.customIndex + index2, translatedDay);
+
+                      $scope.markerData[index].translatedData.push({
+                        'day': translatedDay,
+                        'description': translatedTime
+                      });
                     }
 
-                    var time = div.split(';');
-                    var translatedTime = translateDate(time[1], index, translatedDay);
-
-                    $scope.markerData[index].translatedData.push({
-                      'day': translatedDay,
-                      'description': translatedTime
-                    });
                   }
                 });
               })
-
-            })
+            });
         };
 
         function translateDay(day) {
@@ -127,7 +151,7 @@
 
           if (!_.isEmpty(times) && Array.isArray(times) && times.length >= 2) {
             var openingHour = parseInt(times[0].substring(0, 2));
-            $scope.spotData[index].OpeningHoursWeekdaysFrom = openingHour;
+            $scope.spotData[index].weeksDayStart = openingHour;
             var openingMinute = times[0].substr(3, 2);
             var openingIsPM = false;
             if (openingHour > 12) {
@@ -138,7 +162,7 @@
             parseInt(openingHour) + ':' + openingMinute;
 
             var closingHour = parseInt(times[1].substring(0, 2));
-            $scope.spotData[index].OpeningHoursWeekdaysTo = closingHour;
+            $scope.spotData[index].weeksDayEnd = closingHour;
             var closingMinute = times[1].substr(3, 2);
             var closingIsPM = false;
             if (closingHour > 12) {
@@ -151,64 +175,52 @@
             return openingResult + ' to ' + closingResult;
           } else if (date.toLowerCase() === 'lukket') {
             if (translatedDay === 'Saturday') {
-              $scope.spotData[index].OpeningHoursSaturdayFrom = 0;
-              $scope.spotData[index].OpeningHoursSaturdayTo = 0;
+              $scope.spotData[index].saturdayStart = 0;
+              $scope.spotData[index].saturdayEnd = 0;
             }
             if (translatedDay === 'Sunday') {
-              $scope.spotData[index].OpeningHoursSundayFrom = 0;
-              $scope.spotData[index].OpeningHoursSundayTo = 0;
+              $scope.spotData[index].sundayStart = 0;
+              $scope.spotData[index].sundayEnd = 0;
             }
             return 'Closed';
           }
         }
 
-        $scope.spotData = [];
-
-        //var spotEvent = {
-        //  weeksDayStart: '',
-        //  weeksDayEnd: '',
-        //  saturdayStart: '',
-        //  saturdayEnd: '',
-        //  sundayStart: '',
-        //  sundayEnd: '',
-        //  Description: ''
-        //};
-
-        $scope.import = function (spot) {
-          $scope.spotData.push({
-            //'userId': spot.UserID,
-            "Name": spot.t,
-            "Description": spot.d,
-            "Longitude": spot.ln,
-            "Latitude": spot.lt,
-            "Country": 'Denmark',
-            //"City": spot.City,
-            //"CVR": spot.CVR,
-            "Address": spot.l,
-            //"EventDate": spot.EventDate,
-            //"Phone": spot.Phone,
-            //"SpotType": spot.SpotType,
-            //"State": spot.State,
-            //"Web": spot.Web,
-            "Zip": spot.postalcode,
-
-            //"ClosingTimeSat": spot.ClosingTimeSat,
-            //"ClosingTimeSun": spot.ClosingTimeSun,
-            //"ClosingTimeWeekdays": spot.ClosingTimeWeekdays,
-
-            //"OpeningHoursSaturdayFrom": spot.OpeningHoursSaturdayFrom,
-            //"OpeningHoursSaturdayTo": spot.OpeningHoursSaturdayTo,
-            //"OpeningHoursSundayFrom": spot.OpeningHoursSundayFrom,
-            //"OpeningHoursSundayTo": spot.OpeningHoursSundayTo,
-            //"OpeningHoursWeekdaysFrom": spot.OpeningHoursWeekdaysFrom,
-            //"OpeningHoursWeekdaysTo": spot.OpeningHoursWeekdaysTo,
-
-            //"OpeningTimeSat": spot.OpeningTimeSat,
-            //"OpeningTimeSun": spot.OpeningTimeSun,
-            //"OpeningTimeWeekdays": spot.OpeningTimeWeekdays,
-            //"Image": res.result.Uri,
-            //"Location": location
-          });
-        }
+        //$scope.import = function (spot) {
+        //  $scope.spotData.push({
+        //    //'userId': spot.UserID,
+        //    "Name": spot.t,
+        //    "Description": spot.d,
+        //    "Longitude": spot.ln,
+        //    "Latitude": spot.lt,
+        //    "Country": 'Denmark',
+        //    //"City": spot.City,
+        //    //"CVR": spot.CVR,
+        //    "Address": spot.l,
+        //    //"EventDate": spot.EventDate,
+        //    //"Phone": spot.Phone,
+        //    //"SpotType": spot.SpotType,
+        //    //"State": spot.State,
+        //    //"Web": spot.Web,
+        //    "Zip": spot.postalcode,
+        //
+        //    //"ClosingTimeSat": spot.ClosingTimeSat,
+        //    //"ClosingTimeSun": spot.ClosingTimeSun,
+        //    //"ClosingTimeWeekdays": spot.ClosingTimeWeekdays,
+        //
+        //    //"OpeningHoursSaturdayFrom": spot.OpeningHoursSaturdayFrom,
+        //    //"OpeningHoursSaturdayTo": spot.OpeningHoursSaturdayTo,
+        //    //"OpeningHoursSundayFrom": spot.OpeningHoursSundayFrom,
+        //    //"OpeningHoursSundayTo": spot.OpeningHoursSundayTo,
+        //    //"OpeningHoursWeekdaysFrom": spot.OpeningHoursWeekdaysFrom,
+        //    //"OpeningHoursWeekdaysTo": spot.OpeningHoursWeekdaysTo,
+        //
+        //    //"OpeningTimeSat": spot.OpeningTimeSat,
+        //    //"OpeningTimeSun": spot.OpeningTimeSun,
+        //    //"OpeningTimeWeekdays": spot.OpeningTimeWeekdays,
+        //    //"Image": res.result.Uri,
+        //    //"Location": location
+        //  });
+        //}
       }])
 })();

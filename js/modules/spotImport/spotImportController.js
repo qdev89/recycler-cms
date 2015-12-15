@@ -199,6 +199,55 @@
             //"Image": res.result.Uri,
             //"Location": location
           });
+
+            // http://www.maptive.com/ver3/data.php?operation=get_map_markers&map_id=84877&bounds=53.003421,6.994009,58.592772,13.959341
+          //alert('TODO');
+          //var spot = $scope.newSpots[0];
+          //debugger;
+          //var spotData = $rootScope.el.data('Spot');
+          //var location = {
+          //    longitude: spot.ln,
+          //    latitude: spot.lt
+          //};
+          //spotData.create({
+          //    //'userId': spot.UserID,
+          //    "Name": spot.t,
+          //    "Description": spot.Description,
+          //    "Longitude": spot.ln,
+          //    "Latitude": spot.lt,
+          //    "Country": 'Denmark',
+          //    //"City": spot.City,
+          //    //"CVR": spot.CVR,
+          //    "Address": spot.a,
+          //    "EventDate": spot.EventDate,
+          //    "Phone": spot.Phone,
+          //    "SpotType": spot.SpotType,
+          //    //"State": spot.State,
+          //    //"Web": spot.Web,
+          //    "Zip": spot.postalcode,
+          //    "ClosingTimeSat": spot.ClosingTimeSat,
+          //    "ClosingTimeSun": spot.ClosingTimeSun,
+          //    "ClosingTimeWeekdays": spot.ClosingTimeWeekdays,
+          //    "OpeningHoursSaturdayFrom": spot.OpeningHoursSaturdayFrom,
+          //    "OpeningHoursSaturdayTo": spot.OpeningHoursSaturdayTo,
+          //    "OpeningHoursSundayFrom": spot.OpeningHoursSundayFrom,
+          //    "OpeningHoursSundayTo": spot.OpeningHoursSundayTo,
+          //    "OpeningHoursWeekdaysFrom": spot.OpeningHoursWeekdaysFrom,
+          //    "OpeningHoursWeekdaysTo": spot.OpeningHoursWeekdaysTo,
+          //    "OpeningTimeSat": spot.OpeningTimeSat,
+          //    "OpeningTimeSun": spot.OpeningTimeSun,
+          //    "OpeningTimeWeekdays": spot.OpeningTimeWeekdays,
+          //    //"Image": res.result.Uri,
+          //    "Location": location
+
+          //},
+          //  function (data) {
+          //      debugger;
+
+          //  },
+          //  function (error) {
+          //      console.log(error);
+          //  });
         }
       }])
 })();

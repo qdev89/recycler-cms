@@ -48,24 +48,25 @@
           }
         });
 
-        function splitDataFromUrl() {
+        $scope.splitDataFromUrl = function () {
           sportImportFactory.getMarkers()
             .then(function (result) {
               _.forEach(result.markers, function (marker, index) {
-                $scope.tempMarkerData = marker; // TODO
+                $scope.markerData.push(marker);
+                $scope.markerData[index].translatedData = [];
 
                 var description = marker.d;
                 var divs = description.split('</div>');
 
                 _.forEach(divs, function (div) {
                   if (div.length > 0) {
-                    $scope.import($scope.tempMarkerData);
+                    $scope.import($scope.markerData);
 
                     var day = div.match(new RegExp('\<b\>' + '(.*)' + '\<\/b\>'));
                     var translatedDay = translateDay(day[1]);
 
                     if (translatedDay == undefined) {
-                      $scope.markerData.push({
+                      $scope.markerData[index].translatedData.push({
                         'day': translatedDay,
                         'description': 'TODO: Collection Square donates to: Students donate to projects abroad. At the moment, the footballs to Cambodia'
                       });
@@ -74,7 +75,7 @@
                     var time = div.split(';');
                     var translatedTime = translateDate(time[1], index, translatedDay);
 
-                    $scope.markerData.push({
+                    $scope.markerData[index].translatedData.push({
                       'day': translatedDay,
                       'description': translatedTime
                     });
@@ -83,7 +84,7 @@
               })
 
             })
-        }
+        };
 
         function translateDay(day) {
           day = day.trim();
@@ -149,11 +150,11 @@
 
             return openingResult + ' to ' + closingResult;
           } else if (date.toLowerCase() === 'lukket') {
-            if(translatedDay === 'Saturday') {
+            if (translatedDay === 'Saturday') {
               $scope.spotData[index].OpeningHoursSaturdayFrom = 0;
               $scope.spotData[index].OpeningHoursSaturdayTo = 0;
             }
-            if(translatedDay === 'Sunday') {
+            if (translatedDay === 'Sunday') {
               $scope.spotData[index].OpeningHoursSundayFrom = 0;
               $scope.spotData[index].OpeningHoursSundayTo = 0;
             }
@@ -161,9 +162,18 @@
           }
         }
 
-        $scope.splitDataFromUrl = splitDataFromUrl;
-
         $scope.spotData = [];
+
+        //var spotEvent = {
+        //  weeksDayStart: '',
+        //  weeksDayEnd: '',
+        //  saturdayStart: '',
+        //  saturdayEnd: '',
+        //  sundayStart: '',
+        //  sundayEnd: '',
+        //  Description: ''
+        //};
+
         $scope.import = function (spot) {
           $scope.spotData.push({
             //'userId': spot.UserID,

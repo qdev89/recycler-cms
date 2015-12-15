@@ -65,17 +65,33 @@
     <div class="col-md-6">
         <div ng-if="!_.isEmpty(markerData)">
             <h2>Marker data</h2>
+
             <p>Count: <span ng-bind="markerData.length"></span></p>
-            <div ng-repeat="marker in markerData">
-                <strong ng-if="marker.day">{{::marker.day}}:&nbsp;</strong>{{::marker.description}}
+
+            <div ng-repeat="marker in markerData" class="marker-data">
+                <div ng-repeat="description in marker.translatedData">
+                    <strong ng-if="description.day">{{::description.day}}:&nbsp;</strong>{{::description.description}}
+                </div>
             </div>
-        </div></div>
+        </div>
+    </div>
     <div class="col-md-6">
         <div ng-if="!_.isEmpty(spotData)">
             <h2>Spot data</h2>
+
             <p>Count: <span ng-bind="spotData.length"></span></p>
+
             <div ng-repeat="spot in spotData">
                 <pre>{{spot | json}}</pre>
             </div>
-        </div></div>
+        </div>
+    </div>
 </div>
+
+<style>
+    .marker-data {
+        padding: 5px;
+        border: 1px solid;
+        margin-bottom: 5px;
+    }
+</style>

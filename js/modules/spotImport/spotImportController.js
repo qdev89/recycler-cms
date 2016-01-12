@@ -51,6 +51,28 @@
                 }
             });
 
+            $scope.deleteTerracycle = function () {
+                var spotData = $rootScope.el.data('Spot');
+                //var filter = new Everlive.Query();
+                //filter.where().eq('SpotType', 'Terracycle');
+
+                //spotData.get(filter)
+                //    .then(function (data) {
+                //        debugger;
+                //    },
+                //        function (error) {
+                //            alert(JSON.stringify(error));
+                //        });
+
+                spotData.destroy({ 'SpotType': 'Terracycle' }, // filter
+                    function (data) {
+                        alert('Items successfully deleted.');
+                    },
+                    function (error) {
+                        alert(JSON.stringify(error));
+                    });
+            };
+
             $scope.splitDataFromUrl = function () {
                 $scope.isImporting = true;
                 // http://www.maptive.com/ver3/data.php?operation=get_map_markers&map_id=84877&bounds=53.003421,6.994009,58.592772,13.959341
@@ -309,7 +331,8 @@
                     //}
                     //return 'Closed';
                     return { start: 0, end: 0 }
-
+                } else if (date.toLowerCase() === 'døgnåbent') {
+                    return { start: 1, end: 24 }
                 }
             }
 
